@@ -1,0 +1,106 @@
+//this is the code that implements FCFS in Operating Systems
+//Here we find out WAITING_TIME, AVG_WAITING_TIME, TOTAL_TURN_AROUND_TIME AND AVERAGE_TURN_AROUND_TIME
+
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    // Write C++ code here
+    int n;
+    cout<<"Enter the number of Processes "<<endl;
+    cin>>n;
+    int bt[n]={0},wt[n]={0},tat[n]={0},ttat=0,twt=0;
+    float avg_wt,avg_tat;
+    // cout<<at[0]; //testing the code
+    
+    for(int i=0;i<n;i++){
+        //taking input of bt
+        cout<<"Enter Burst Time of process "<<i<<endl;
+        cin>>bt[i];
+    }
+    cout<<endl;
+    
+    for(int j=1;j<n;j++){
+        int sum=0;
+        for(int k=0;k<j;k++){
+            sum = sum+bt[k];
+        }
+        wt[j] = sum;
+        
+        twt = twt+wt[j];
+    }
+    
+    //turnAround Time = waiting time +burst time
+    //tat[m] = wt[m]+bt[m]
+    for(int m=0;m<n;m++){
+        tat[m] = wt[m]+bt[m];
+        ttat = ttat+tat[m];
+        
+    }
+    
+    for(int j=0;j<n;j++){
+        cout<<"-----------------------------------------------------------"<<endl;
+        
+        cout<<"Waiting time for Process " <<j<< " is     -->> "<< wt[j]<<endl;
+        cout<<"Turn Around time for Process " <<j<< " is -->> "<< tat[j]<<endl;
+        
+        cout<<"-----------------------------------------------------------"<<endl;
+        
+        cout<<endl;
+        
+        
+    }
+    
+    //total wt and tat
+    
+    cout<<"---------------------------------------------------------"<<endl;
+    cout<<endl;
+    
+   
+    cout<<"Total Waiting Time for all the process.  -->> ";
+    cout<<twt<<endl;
+    cout<<"Total Turn Around Time for all the process->> ";
+    cout<<ttat<<endl;
+    
+    cout<<endl;
+    
+    cout<<"---------------------------------------------------------"<<endl;
+    
+    
+    
+    // average waiting time
+    
+    
+    avg_wt = (float)twt/n;
+    avg_tat = (float)ttat/n;
+    cout<<"---------------------------------------------------------"<<endl;
+    cout<<endl;
+    
+   
+    cout<<"Average Waiting Time for all the process.  -->> ";
+    cout<<avg_wt<<endl;
+    cout<<"Average Turn Around Time for all the process->> ";
+    cout<<avg_tat<<endl;
+    
+    cout<<endl;
+    
+    cout<<"---------------------------------------------------------"<<endl;
+    
+    
+    
+    
+    
+    
+    
+    
+    //testing the code
+    // for(int j=0;j<n;j++){
+        
+    //     cout<<tat[j]<<endl;
+    // }
+    
+    
+
+    return 0;
+}
